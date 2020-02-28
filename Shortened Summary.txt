@@ -1,0 +1,3 @@
+Many real world scenarios involve periodic features. These are features expressed through cyclical values like time of day, seasons, angles, wraparound spaces, and other elements with sinusoidal behavior. Acceptable data science methods for handling these values are dependent on the algorithms employed. It is usually inappropriate to treat these attributes as simple one-dimensional attributes because that treats the minimum and maximum values far apart spatially when they should be close.
+
+This study explores approaches in handling periodic attributes and provides details for understanding their consequences. Some implementation code will be provided. The content will be published on a new version of my website available at the end of the Winter semester.
