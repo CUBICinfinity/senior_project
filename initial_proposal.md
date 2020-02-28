@@ -4,7 +4,6 @@
 ---
 ## Personal Background
 I have completed the capstone courses MATH 425, CS 450, and MATH 488. I love data science in general but have a particular interest in automated processes and predicting functions. After graduation, I may proceed to work at INL; in which case, I would begin working on a graduate program earlier than if employed in a non-academic setting.
-##### Student Details: gre17032@byui.edu, 33-121-4307
 
 ## Project Proposal Background
 The topic of this project is one that has gotten my attention while working at INL. Lots of variables are periodic in nature: Time related cycles (seasons, day/night, etc.), certain physical processes (including rotating bodies), and virtual wraparound spaces. A few approaches exist for managing these attributes in machine learning algorithms. Most if not all encoding of cyclical variables for neural networks involves taking the sin and cosine of the variable, mapping it to a circle in two dimensions. Other algorithms which involve distance metrics require calculations that are careful to minimize spacial distortion. A strong candidate metric I've identified is the arc-length across these attributes. Having a distance metric that preserves the information of periodic variables helps in deriving new variables of interest. The purpose of the project will be to obtain and share knowledge in this topic with example code for future data science projects.
