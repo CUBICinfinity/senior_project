@@ -1,0 +1,7 @@
+Recommendations for periodic data in neural networks
+~_~_~_~_~_~_~_~_~_~_~_~_~_~
+Transform the explanatory variables with modulus operations so that future data will not be outside the range of the training data.
+
+Use sinusoidal activations or weights.
+
+Use fourier transform and work in the frequency domain - Nick Alger
