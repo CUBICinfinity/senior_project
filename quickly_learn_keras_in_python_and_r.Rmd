@@ -1,0 +1,55 @@
+---
+title: "Concise Notes for Learning Keras as Quickly as Possible"
+date: "Created 3/7/2020"
+output: html_document
+---
+
+</br>
+This is not a fancy tutorial. It's here to help you better than the official documentation helped me.
+</br></br>
+
+#### **View these in the order provided; don't try to memorize everything:**
+
+https://keras.io/#installation (You may choose to install TensorFlow now if you haven’t already.)
+
+https://keras.io/getting-started/functional-api-guide/ (Stop reading after the model diagram.)
+
+https://keras.io/getting-started/sequential-model-guide/ (Stop reading once you get to “Examples”.)
+
+*About callbacks*</br>
+https://machinelearningmastery.com/how-to-stop-training-deep-neural-networks-at-the-right-time-using-early-stopping/
+
+*You can use the functional API for unique architechures*</br>
+https://machinelearningmastery.com/keras-functional-api-deep-learning/
+</br>
+
+At this point you should have a good understanding. Google things and refer to the documentation as needed.
+</br></br>
+
+#### **Keras in R**
+I prefer using Keras in Python, but you can also run it from R.</br>
+The R Keras installation can be a little unfriendly, so here are some tips:
+
+To save time, avoid issues by updating these packages first.</br>
+`install.packages(c("ps", "Rcpp", "digest", "processx", "devtools"))`
+
+Install TensorFlow.</br>
+`devtools::install_github("rstudio/tensorflow")`</br>
+`tensorflow::install_tensorflow()` Include the argument `gpu=TRUE` if you want GPU processing.
+
+Verify TF installation.</br>
+`library(tensorflow)`</br>
+`tensorflow::tf_config()`
+
+Install Keras.</br>
+`devtools::install_github("rstudio/keras")`</br>
+If you update other packages when prompted and one of them fails, perform `install.packages('package_name')` separately, then run `devtools::install_github("rstudio/keras")` again.
+
+Allow installation of Miniconda unless you insist otherwise.
+
+If you are familiar with R, the Keras usage will be easy to understand: https://keras.rstudio.com/
+</br></br>
+
+##### **Credit**
+This, along with its own references, helped me when installing Keras in R and I give it credit as a reference:</br>
+http://rstudio-pubs-static.s3.amazonaws.com/415380_56d75ae905a7418ca07f0040e0cbd70e.html</br></br>

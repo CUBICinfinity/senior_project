@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css?family=Nanum+Gothic|Noto+Sans+KR|ZCOOL+XiaoWei" rel="stylesheet">
+<title>Jim Greene</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="57x57" href="apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+<script type="text/javascript">
+ function showhide(id) {
+    var e = document.getElementById(id);
+    e.style.display = (e.style.display == 'block') ? 'none' : 'block';
+ }
+ 
+ function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+ }
+</script>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+  background-color: black;
+}
+
+body {
+  margin: 0;
+  background-color: #000
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+.topnav {
+  overflow: hidden;
+  background-color: #084;
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+
+/* Style the topnav links */
+.topnav a {
+  float: right;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  
+}
+
+.topnav b {
+  float: left;
+  display: block;
+  text-align: center;
+  color: white;
+  font-family: Noto+Sans+KR;
+  font-size: 100%;
+  text-decoration: none;
+}
+
+
+/* Change color on hover */
+.topnav a:hover {
+  background-color: #000;
+  color: #0b6;
+}
+
+.topnav b:hover {
+  color: white;
+  background-color: #084;
+}
+
+
+
+h1 {
+ text-align: center;
+}
+
+h2 {
+  color: white;
+  padding-top: 1em;
+  text-align: center;
+}
+
+h2:visited a {
+  color: white;
+}
+
+h2:link a {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+a:link {
+  color: white;
+}
+a:hover {
+  color: orange;
+}
+
+/* Style the content */
+.content {
+  background-color: #000;
+  padding: 2em;
+  color: #FFF;
+  text-align: center;
+}
+
+/* Style the footer */
+.footer {
+  background-color: #151515;
+  padding: 5px;
+  text-align: center;
+  color: white;
+}
+
+.footer:link {
+  color: white;
+}
+
+/* visited link */
+.footer:visited {
+  color: white;
+}
+
+
+/* Something else I tried first */
+.column2 {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+  -webkit-column-gap: 10px; /* Chrome, Safari, Opera */
+  -moz-column-gap: 10px; /* Firefox */
+  column-gap: 10px;
+}
+
+
+.column {
+  float: left;
+  width: 50%;
+  padding: 5px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+img {
+  width: 75%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+</style>
+</head>
+<body>
+
+<div style="margin-top:46px;height:0px;">
+
+<div class="topnav a">
+  <b class="b"><a href="index.html" class = "b">Jim Greene</a></b>
+  <a href="Jim Greene Resume.pdf">Resume</a>
+  <a href="#bottom">Contact</a>
+  <a href="creations.html">Creations</a>
+</div>
+
+<div class="content">
+  <h1> Learn </h1>
+  <h2> <a href="LowessRobustLeastSquares.html">LOWESS Curves and Robust Linear Models</a> <h2/>
+  <img src="robust.png" style="width:20em">
+  
+  <a href="javascript:showhide('ProjectM')" style="font-size:.675em;"><h2 style="padding-top:2.5em"> Resources for Project Management <h2/> </a>
+  
+    <div id="ProjectM" style="display: none;">
+		<h3 style="font-size:.5em;margin-top:0em;margin-bottom:0em"> <a href="Project_Management_Methods.pdf">Project Management Methods</a> <h3/> 
+		<h3 style="font-size:.5em;margin-top:0em;margin-bottom:0em"> <a href="words.pdf">A Collection of Thoughts for Better Project Management</a> <h3/>
+		<img src="Methods2_small.png" style="width:5em;margin-top:0px">
+		<h3 style="font-size:.5em;margin-top:0em;margin-bottom:0em"> The Marshmallow Challenge</h3>
+		<iframe width="516" height="411" src="https://www.youtube.com/embed/H0_yKBitO8M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+	
+  
+  
+</div>
+
+
+<div class="footer">
+
+  <div class="row" style="font-size:17px;margin-left:25%;margin-right:25%;">
+    <div class="column">
+      <p style="line-height:0;">Email:</p> <a href="mailto:jimkgreene@gmail.com" class = footer>jimkgreene@gmail.com</a>
+    </div>
+    <div class="column">
+      <p style="line-height:0;">Phone:</p> 863-800-0258
+    </div>
+  </div>
+
+  <p><a href="#" class="footer">Back to top</a></p>
+</div>
+
+<bottom id="bottom"></bottom>
+
+</body>
+</html>

@@ -11,43 +11,58 @@ from keras.models import Model
 from keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsRegressor as KNN
+from matplotlib import pyplot as plt
 
-
-y = np.arange(0, 30*np.pi, np.pi/7)
-x = np.sin(y)
-noise = np.random.rand(0, np.pi/15)
+# Make up data
+y = np.arange(0, 30*np.pi, np.pi/7.1)
+x = np.column_stack((np.sin(y), np.sin(y + np.pi/4)))
+noise = np.random.normal(0, np.pi/30, len(y))
 y = y+noise
+y = np.mod(y, 2*np.pi)
 
-y_mod = np.mod(y, 2*np.pi)
+# What data looks like
+fig = plt.figure(figsize=(6,5))
+ax = fig.add_subplot(111, xlabel = 'y', ylabel = 'x1 in red, x2 in blue')
+ax.scatter(y, x[:,0], color=[1, 0, 0, 0.3])
+ax.scatter(y, x[:,1], color=[0, 0, 1, 0.3])
 
-x_train, x_test, y_train, y_test = train_test_split(x, y_mod, test_size=0.2)
+# Train a model
+y_transformed = np.column_stack((np.cos(y), np.sin(y)))
 
-inputs = Input(shape=(1,))
-hidden1 = Dense(8, activation='sigmoid')(inputs)
-hidden2 = Dense(4, activation='sigmoid')(hidden1)
-outputs = Dense(1, activation='linear')(hidden2)
+x_train, x_test, y_train, y_test = train_test_split(x, 
+                                                    y_transformed, 
+                                                    test_size=0.2)
+
+inputs = Input(shape=(2,))
+hidden1 = Dense(8, activation='elu')(inputs)
+hidden2 = Dense(4, activation='elu')(hidden1)
+outputs = Dense(2, activation='linear')(hidden2)
 
 model = Model(inputs=inputs, outputs=outputs)
-model.compile(optimizer='sgd',
-              loss='mean_squared_error',
+model.compile(optimizer='adam',
+              loss='mean_absolute_error',
               metrics=['mean_squared_error'])
-
-stopping = EarlyStopping(monitor='val_loss', mode='min', patience = 250)
 
 model.fit(x_train, y_train, 
           validation_data=(x_test, y_test), 
-          epochs = 2000, # max
-          callbacks = [stopping])
+          epochs = 2000,
+          callbacks = [EarlyStopping(monitor='val_loss', 
+                                     mode='min', 
+                                     patience = 150)])
 
-predictions = model.predict(x_test)
-print("MSE:", np.mean((predictions - y_test)**2))
-
+# Test
+y_pred = model.predict(x_test)
+print("MLP results:")
+print("MAE for cos(y) and sin(y) =", np.mean(np.abs(y_test - y_pred)))
+real_y_test = np.mod(np.arctan2(y_test[:,1], y_test[:,0]), 2*np.pi)
+real_y_pred = np.mod(np.arctan2(y_pred[:,1], y_pred[:,0]), 2*np.pi)
+print("MAE for y =", np.mean(np.abs(real_y_test - real_y_pred)))
 
 # Compare to a very simple model
-nearest_neighbor = KNN(n_neighbors=1)
-nearest_neighbor.fit(x_train.reshape(-1, 1), y_train)
-knn_pred = nearest_neighbor.predict(x_test.reshape(-1, 1))
-print("MSE:", np.mean((knn_pred - y_test)**2))
-
-
-
+knn_model = KNN(n_neighbors=2)
+knn_model.fit(x_train.reshape(-1, 2), y_train)
+knn_pred = knn_model.predict(x_test.reshape(-1, 2))
+print("\nKNN results:")
+print("MAE for cos(y) and sin(y) =", np.mean(np.abs(y_test - knn_pred)))
+real_knn_pred = np.mod(np.arctan2(knn_pred[:,1], knn_pred[:,0]), 2*np.pi)
+print("MAE for y =", np.mean(np.abs(real_y_test - real_knn_pred)))
