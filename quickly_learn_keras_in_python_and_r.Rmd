@@ -5,7 +5,7 @@ output: html_document
 ---
 
 </br>
-This is not a fancy tutorial. It's here to help you better than the official documentation helped me.
+This is not a fancy tutorial. It is the guide I wish I had when I was getting started.
 </br></br>
 
 #### **View these in the order provided; don't try to memorize everything:**

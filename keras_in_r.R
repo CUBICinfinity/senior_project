@@ -26,6 +26,7 @@ devtools::install_github("rstudio/keras")
 
 
 #####
+library(tensorflow)
 library(keras)
 library(tidyverse)
 library(caret)
@@ -102,3 +103,20 @@ errors <- abs(test$y - real_knn_pred)
 # Correct for predictions near 2pi
 errors <- if_else(errors > pi, abs(errors - 2*pi), errors)
 print("MAE for y =", mean(errors))
+
+# credit: https://stackoverflow.com/questions/6862742/draw-a-circle-with-ggplot2
+cbind(test, y_pred) %>% 
+  ggplot(aes(x = cos_y, y = sin_y)) +
+  annotate("path",
+           x=cos(seq(0,2*pi,length.out=100)),
+           y=sin(seq(0,2*pi,length.out=100)), 
+           alpha = 0.2) +
+  geom_point(alpha = 0.4, size = 3, color = "black") +
+  geom_point(aes(x = V1, y = V2), color = "red", alpha = 0.4, size = 3) +
+  geom_curve(aes(x = V1, y = V2, xend = cos_y, yend = sin_y)) +
+  geom_point(data = data.frame(x = c(0, 0), y = c(0, 0), fact = c("Actual", "Predicted")), 
+             aes(x, y, color = fact), alpha = 0, size = 3) +
+  scale_colour_manual("", values = c("Actual" = "black", "Predicted" = "red")) +
+  guides(colour = guide_legend(override.aes = list(alpha = 0.4))) +
+  theme_minimal() +
+  theme(legend.position = "bottom")

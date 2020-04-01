@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis|Barlow|Sedgwick+Ave+Display|Lacquer&display=swap');
 
 @font-face {
-    font-family: 'cuinfregular';
-    src: url('cu.inf/cuinf-regular-webfont.woff2') format('woff2'),
-         url('cu.inf/cuinf-regular-webfont.woff') format('woff'),
-         url('cu.inf/Cuinf-Regular.ttf') format('truetype');
+    font-family: 'cubicinfinity';
+    src: url('cu.inf/cubicinfinity-regular-webfont.woff2') format('woff2'),
+         url('cu.inf/cubicinfinity-regular-webfont.woff') format('woff'),
+         url('cu.inf/Cubicinfinity-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -24,7 +24,7 @@ a {
 
 .logo {
   float: left;
-  font-family: 'cuinfregular';
+  font-family: 'cubicinfinity';
   font-weight: normal;
   font-style: normal;
   padding-left: 10%;
@@ -34,15 +34,15 @@ a {
   float: right;
   padding: 0.5em;
   margin-right: 10%;
-  font-family: cuinfregular;
+  font-family: Dosis;
   font-weight: normal;
   font-style: normal;
-  border-style:  solid;
+  /*border-style:  solid;
   border-color: #444;
   text-align: center;
   background-color: #FeFeFe;
   border-radius: 0.4em 0.1em 0.1em 0.4em;
-  padding-left: 0.5em;
+  padding-left: 0.5em;*/
 }
 
 .articles {
@@ -54,6 +54,22 @@ a {
   font-family: Dosis;
   text-align: center;
   padding-top: 4em;
+}
+
+@media only screen and (max-width: 73em) {
+  .articles {
+    grid-template-columns: auto auto;
+    width: 26.7em;
+    margin-left: 3.5em;
+  }
+}
+
+@media only screen and (max-width: 50em) {
+  .articles {
+    grid-template-columns: auto;
+    width: 13.3em;
+    margin-left: 3.5em;
+  }
 }
 
 .frame {
