@@ -7,7 +7,7 @@ output:
 editor_options: 
   chunk_output_type: console
 ---
-
+ 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       out.width = "50%", 
@@ -49,21 +49,18 @@ font-style: italic;
 
 ---------
 
-# Introduction
-
-
-Many cases involve periodic (or cyclical) features. These are features that naturally have looping values; for example, time of day (24-hour cycle), seasons, angles of rotating bodies, virtual wraparound spaces, and most anything sinusoidal. Acceptable methods for handling these values are dependent on the algorithms employed. It is not appropriate to treat these attributes the same way as normal one-dimensional attributes because that makes the minimum and maximum values far apart spacially\*, when they should be close. This article provides a necessary awareness of implications and methods involving these attributes.</br>
+Many cases involve periodic (or cyclical) features. These are features that naturally have looping values; for example, time of day (24-hour cycle), seasons, angles of rotating bodies, virtual wraparound spaces, and most anything sinusoidal. Acceptable methods for handling these values are dependent on the algorithms employed. It is not appropriate to treat these attributes the same as normal one-dimensional attributes because that makes the minimum and maximum values far apart spacially\* when they should be considered close. This article provides a necessary awareness of implications and methods involving these attributes.</br>
 <div class = caption>
 **\***The formal spelling is “spatial”, but “spacial” is sometimes chosen because it more clearly references “space”.</br></div>
 
 # Neural Networks and Linear Regression
 
 The most common solution to use periodic data in a neural network is to transform each periodic attribute to a two-dimensional circle, so that the inputs are the sine and cosine of the angle.
-Adjusting the radii of the attributes is unnecessary because the final coefficients or weights will fit themselves accordingly. Getting the radii right will usually take more effort than the time doing so saves.
+Adjusting the radii of the attributes is unnecessary because the final coefficients or weights will fit themselves accordingly. Getting the radii right will probably take more time than it saves in training.
 
 <div style="text-align: center;">
 **Example for time of day**
- 
+
 ![Graphed circle with time of day as theta, radius = 24/(2π)](images/24circle.png)
 </div>
 
@@ -78,7 +75,7 @@ Adjusting the radii of the attributes is unnecessary because the final coefficie
 <div class = caption>
 **\***Multiplying by the radius, 3.8197, would be acceptable but unnecessary for most tasks.
 </div>
-
+ 
 Technically, this transformation distorts the distance between values: Points on opposite ends of the cycle should be π$\cdot$radius apart but are treated as if they are only 2$\cdot$radius apart. This is acceptable for a neural network however, because it can find such non-linear relationships. The principles and general approaches described in this section apply to other supervised learning methods like linear regression, but it may be helpful to keep this distortion in mind while searching for a good model. Having some contextual knowledge of the data makes modeling sinusoidal relationships easier.
 
 As part of the universal approximation theorem, any neural network with at least one hidden layer, an unspecified number of neurons, and a non-linear activation function can approximate sinusoidal functions. Non-linear activation functions include RELU, which is mostly linear.
@@ -86,7 +83,7 @@ Though not common in modern practice, some neural networks have been built with 
 https://www.researchgate.net/publication/3835580_Neural_networks_with_periodic_and_monotonic_activation_functions_a_comparative_study_in_classification_problems
 
 Information on neural networks predicting periodic values is sparse, so I have written a simple network that demonstrates this capability. Other architectures will be better for various tasks; but after testing, this was the best model I found for the synthetic data created here.</br>
- 
+
 #### Fake Data
 
 ```python
@@ -115,7 +112,7 @@ Information on neural networks predicting periodic values is sparse, so I have w
 
 <div class = caption>
 I chose to make the data a little noisy and instead of being the sine and cosine of the target variable `y`, the explanatory variables `x1` and `x2` are only a one eighth period apart.</div></br>
- 
+
 By converting and predicting the sine and cosine of the target angles I get much better results. It is easy to convert predicted rectangular coordinates to the single periodic value, named `real_y_pred` in the script. I attempted tanh for the final activation function because it ranges from -1 to 1 but found that a linear activation performs better.</br>
 
 #### Multilayer-Perceptron
@@ -176,7 +173,7 @@ By converting and predicting the sine and cosine of the target angles I get much
     real_knn_pred = np.mod(np.arctan2(knn_pred[:,1], knn_pred[:,0]), 2*np.pi)
     print("MAE for y =", np.mean(np.abs(real_y_test - real_knn_pred)))
 ```
-
+ 
 
 #### Results
 
@@ -191,6 +188,9 @@ MAE for y = 0.10670556797752576
 </div>
 
 #### The above process done with R
+
+Note: Installing the Keras library in R can be a little bit involved. [Click here to read some notes I created on the process.](quickly_learn_keras_in_python_and_r.html)
+
 
 ```r
     # R script
@@ -281,10 +281,10 @@ As shown by the plot below, the neural network tends to predict along the circle
 </div>
  
 ## Computing Distance
-Many algorithms rely on distance measurements. These include K-Nearest Neighbors and clustering algorithms like OPTICS and K-means. The distortions from using the trigonometric transformation described in the previous section are suboptimal for most of these algorithms. A type of cosine similarity can work but comes with its own issues that are explained in the "What if" section.</br>
-A flawless and simple solution for computing distances involving periodic attributes is to use the shortest distance along each periodic attribute to the neighboring point. Aside from attribute scaling, this is all that is needed because most if not all distance metrics use the differences along each dimension independently; for example, the Pythagorean theorem takes the square root of the sum of the squared differences to find the Euclidean distance.
+Many algorithms rely on distance measurements. These include K-Nearest Neighbors and clustering algorithms like OPTICS and K-means. The distortions from using the trigonometric transformation described in the previous section are suboptimal for most of these algorithms. A type of cosine similarity can work but comes with its own issues that are explained in the "What Ifs" section at the end of this article.</br>
+A flawless and simple solution for computing distances involving periodic attributes is to use the shortest distance along each periodic attribute to the neighboring point. Aside from attribute scaling, this is all that is needed because most if not all distance metrics use the differences along each dimension independently; for example, the Euclidean distance uses the Pythagorean theorem, taking the square root of the sum of the squared differences.
 <div style="text-align: center;">![A shorter distance across the wraparound point](images/shorter distance.png)</div>
-Precise implementation will vary, but the approach is to take the absolute difference between the points along the dimension and if the dimension is periodic and the difference is greater than half the length of the period, subtract the length of the period and return the absolute value.
+Precise implementation will vary, but the approach I've used here is to take the absolute difference between the points along the dimension; then, if the dimension is periodic and the difference is greater than half the length of the period, subtract the length of the period and return the absolute value.
 
 $$
 \text{distance between}\ x_0\ \text{and}\ x_1\ \text{along cyclical dimension}\ x=\\
@@ -295,7 +295,7 @@ $$
 $$
 
 It can be expensive to constantly compute the distance between a point and all others, especially when conditional checks are involved. One way to reduce computation is to compute a full distance matrix for later reference. Not only does the matrix only need to be computed once, but math on matrices can be parallelized. Precomputed distance matrixes are often the only way to supply a custom distance metric to a library function. Supplied below are functions written in R and Python for building a distance matrix when periodic attributes are involved:
-
+ 
 ```python
 # Python script
 
@@ -370,7 +370,8 @@ periodic_dist <- function(dat,
   } else {
     if (class(ranges) != "list") {
       stop(paste("\nProvide argument 'ranges' as a list of vectors and values describing each column.", 
-                 "If a column is periodic provide a min and max vector, like c(1, 12) for month, or a single range value (computed by min - max), like 2*pi for angle.", 
+                 "If a column is periodic provide a min and max vector, like c(1, 12) for month, 
+or a single range value (computed by min - max), like 2*pi for angle.", 
                  "If a column is not periodic, provide NA.",
                  "Example: list(c(0,1), c(1,12), 2*pi, NA)", 
                  sep = "\n"))
@@ -406,16 +407,16 @@ periodic_dist <- function(dat,
 
 This article might also be of interest: </br> https://www.researchgate.net/publication/263871195_K-MEANS_CLUSTERING_FOR_PROBLEMS_WITH_PERIODIC_ATTRIBUTES, </br>
 DOI: 10.1142/S0218001409007338
- 
+
 ## Decision Trees
-Decision trees divide attribute values into discrete chunks. If no transformation is made to periodic inputs, then a split is essentially forced to occur at the start/end of the cycle and hinders potential accuracy. A decision tree will perform better if the trigonometric transformation is applied to remove this restriction at the cost of higher dimensionality. Periodic variables to be predicted are best transformed as well.</br>
-It would be possible to build a modified decision tree that accepts a tag indicating an attribute is periodic. The trained model would include more complicated conditionals at each branch that splits on these attributes. Here is a visual example for a binary split:
+Decision trees divide attribute values into discrete chunks. If no special treatment is given to periodic inputs, then a split is forced to occur at the start/end of the cycle and hinders potential accuracy. This is probably less of an issue for ensemble models, but decision trees will perform better if the periodic attributes are accounted for. Periodic variables to be predicted are best transformed as well.</br>
+It is possible to build a modified decision tree that accepts a tag indicating an attribute is periodic. The trained model would include more complicated conditionals at each branch that splits on these attributes. Here is a visual example for a binary split:
 <div style="text-align: center;">
 ![](images/Decision Tree Periodic Split.png)</div>
 Choose two split points. Start with the section of the period that does not include the minimum/maximum point. Assign all points greater than the lower split and lower than the higher split to this section. Assign all other points to the other section.</br>
 This document addresses this: https://hal.archives-ouvertes.fr/hal-01561514/document</br>
 
-TO DO:  I might implement this, as it seems incomplete not to do so.</br>
+I may implement this in the future, but if you do it first, let me know. Ideally, this decision tree object will support more than binary splits.</br>
 
 ## What Ifs
 <div style="font-size:0.1em; line-height:0.1em;"></br></div>
@@ -442,6 +443,9 @@ knitr::include_graphics(c("images/Euclidean.png", "images/Angular.png"))
 <div class = caption>Note: The spacing between contour lines is not precisely the same between the two plots. There’s something with geom_contour I would need to correct.</div></br>
 If two periodic variables are to be continuously expressed in three dimensions, it can only be done using a torus. An undistorted mapping can exist in 4D space. As mentioned, the shapes created by these wraparounds are not n-spheres. Some attempt has been made to demonstrate the four-dimensional shape. In this 3D plot, the fourth dimension, w, is represented by the size and color of the points: 
 <div style="text-align: center;">![](images/Viz_attempt_2.png)</div>
- 
+
 After searching, I found that this is called a Clifford torus, belonging to a family of tori in even-numbered spaces. A proof for the Euclidean distance can be found here:</br> https://math.stackexchange.com/questions/965654/distance-between-two-points-on-the-clifford-torus
 
+The code for this visualization can be found [here](visualize_wrapfield.R).
+ 
+<div style="text-align: center; font-size: 1.6em; margin-bottom: 2em; margin-top: 2em;">[Return](index.html)</div>

@@ -51,5 +51,5 @@ If you are familiar with R, the Keras usage will be easy to understand: https://
 </br></br>
 
 ##### **Credit**
-This, along with its own references, helped me when installing Keras in R and I give it credit as a reference:</br>
+This, along with its own references, helped me when installing Keras in R and some of these notes come from them:</br>
 http://rstudio-pubs-static.s3.amazonaws.com/415380_56d75ae905a7418ca07f0040e0cbd70e.html</br></br>
