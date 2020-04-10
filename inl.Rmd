@@ -1,0 +1,56 @@
+---
+output: 
+  html_document:
+    theme: flatly
+---
+
+<div style="font-size: 1.2em; margin-bottom: 1em; margin-top: 0.9em; cursor:pointer;">
+<a onclick="window.history.back();">Return</a>
+</div>
+
+# My Internship Experience at Idaho National Laboratory
+### Part I, 4/9/2020
+
+</br>
+I won't go into detail about the code I've written or the methods I'm using because most project details at INL are treated as proprietary and only released as necessary. This means I can focus this blog on something that is arguably more important, the soft skills I'm developing.
+
+## 1. Sometimes Work is Easy, but Organization is Difficult - How to Get Everyone on the Same Page
+At the end of the last semester interning at Idaho National Laboratory, I dropped several accomplishments from my report to meet the 3000-word limit. Each day has been different, so there’s too much to talk about. I enjoy this sort of work and it rarely gets boring. If I don’t know how to do something, I might step away from my desk and go for a walk or lie in a chair as I think about how to program or approach a data science problem. While this stuff is challenging, having a job to do and doing it is relatively easy.
+
+At the start of this semester (Jan 2020), my mentor wanted me to focus on just one thing, analysis of molecular dynamics simulations, instead of the variety of activities I did before. The problem is that we didn’t have a good definition of what we were trying to solve. I began working on a generalized solution for predicting MD simulations, one that we disregarded earlier because of its time commitment.
+
+About a third of the way into the process, my mentor’s co-author expressed concerns on if what we were doing would be useful. It is important to note that on the team, I’m the only data scientist; the other three are molecular engineers. Physics is not something I’ve studied. I reiterated the types of paths we could be taking. For the next week I worked on some image analyses as they worked to figure out what question they were trying to answer.
+
+We met again and after explaining the results of the images, we continued to discuss the material simulations. They debated a couple main subjects of interest including how they would look to academic publishers and if they would result in future funding. I was assigned some simple tasks, this time involving the simulation data. When we next met, I shared the results and what we could do going forward. The co-author again expressed that he didn’t know if we had the right idea, relating pop-culture stories of machine learning failures. This general process continued for some time, and while I appreciate his intuition, we were starting to go in circles.
+
+I suggested that I learn more about quantum mechanics but was warned by my mentor that the learning curve is steep and that he didn’t want me spending my hours on that. The team didn’t express an interest in learning more about data science, so we needed to continue to work on our interdisciplinary communication.
+
+I began learning the way the co-author communicates and started validating him more. I soon learned how to take what he was saying and described in broad terms how theories are developed and the kind of work we need to do to accomplish our goals at the current moment. I said that, "You start with finding correlations and then you ask questions about them and start to understand the causation. This leads to the development of theories and you can test a theory by making predictions and seeing when you are right and when you are wrong." (I was basically quoting Clayton Christensen, who passed away this year. This is one of my favorite videos: https://www.youtube.com/watch?v=WJzYTxXH7R0) I then related it to the data exploration we were doing and how we have to start somewhere to be able to develop a theory.
+
+I also learned that I could build the team’s confidence in me by doing things they don’t know how to do, like creating visualizations to explore the data.
+
+Right now, I’m doing some more in-depth analysis that may help them decide where I should focus my future efforts. I’ll provide an update after things have played out.
+
+## 2. Remaining Productive when Stuff Goes Wrong
+When I started at INL, I was given an old computer to work from. While I was given options for potentially running jobs on the servers, I needed to test them first. Because I was working with a slower machine, I took extra care to optimize the code. I soon got access to a faster computer which could complete tasks in a third of the time. As I started working with bigger data, the need to keep things parallelized became essential. I kind of appreciated that I had a slower computer that forced me to learn better libraries and techniques. It was during this time that I ended up contributing to the Nuitka Python compiler, but I gave up once it became obvious that it was a much bigger task than I or possibly even the main developer had time for.
+
+In the Fall of 2019, the Collaborative Computing Center was opened, and I was one of the first to migrate to the building. There was some miscommunication and I ended up waiting all day for my computer to be delivered. (We were given instructions to let union workers set things up; we weren’t supposed to do it ourselves. –But when they forgot to mount the monitors, I did that part myself.) During this time, I explored the empty building. I borrowed a sketchpad from some someone in my pod. I drew up some concepts and looked things up on my phone. The notes I took that day served as a reference several times in the future.
+This semester we were all affected by the outbreak of COVID-19. We switched to telecommuting and Alex from the other side of the room let me use a Macintosh notebook that he didn’t need. We got it encrypted and I set up the VNP connection at home, after a few emails and calls to get it working temporarily. I tried other connections methods and eventually found a way that works consistently. We don’t know why it does, but it is secure.
+
+At INL I can’t install anything without approval and sometimes, especially if a virus outbreak makes tech support busy, it can take a while. So, I employed stuff that doesn’t require installation. I found that our servers provide Jupyter sessions, and I’ve enjoyed using those. I wanted to create kernels in our project folder instead of my home directory, so I contacted the high-performance computing consultants to learn how to do it. They offered to set it up for me, but I wanted to learn, so they sent me the details I needed to installation Miniconda and manage the environments. Before I had access to an R kernel, I learned Seaborn to make some pairs plots in Python. As someone who likes data wrangling in R, I thought this was a cool article: https://stmorse.github.io/journal/tidyverse-style-pandas.html
+
+Once I got permission to install the software I wanted, something went wrong with  my ability to create sessions on the server. While waiting for a response about how to fix this, I installed R and Python to work locally.
+
+The theme of all of this is simply that there are alternative ways to get things done, and hacking stuff together is necessary pretty much all the time.
+
+## 3. Lift Where I Stand - What I'm Doing is Meaningful
+I’ve walked over to other parts of the building to talk about things I’m working on and get insight from others. Me and my friend upstairs went to lunch together and discussed my experiences and how to solve the machine learning problems. It’s all been very helpful. There is no need for a team to only communicate with themselves. The diversity makes things work faster.
+
+While I have enjoyed my work, this has made me consider working in another department or company with software development or data science experience. Maybe I will; but during our last discussion in the business strategy course I’m taking, someone said something that made me realize I’ve lost sight of something important:
+
+In the material science department, no one else knows data science. While the experience is sometimes frustrating, they need me, and I need to learn from them. If we can make data science successful here, then other data scientists will be welcomed in and will have a positive experience. An apostle in the Church of Jesus Christ of Latter-day Saints used the words, “Lift where you stand.” It’s not about where we are, but how we serve others. And if I don’t learn how to be constructive in my current situation, I’m missing out on important experiences!
+
+
+<div style="text-align: center; font-size: 1.6em; margin-bottom: 2em; margin-top: 2em; cursor:pointer;">
+<a onclick="window.history.back();">Return</a>
+</div>
