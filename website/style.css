@@ -56,12 +56,38 @@ a {
   color: black;
 }
 
+.backcenter {
+  clear: both;
+  padding: 0.5em;
+  text-align: center;
+  margin: auto;
+  font-family: Dosis;
+  font-weight: normal;
+  font-style: normal;
+  text-decoration: none;
+  color: black;
+}
+
 .textbody {
   font-family: Dosis;
   text-align: center;
   margin: auto;
   max-width: 45em;
   clear: both;
+}
+
+.thicktext {
+  font-family: Barlow;
+  font-size: 1.3em;
+  text-align: left;
+  margin: auto;
+  max-width: 37em;
+  clear: both;
+}
+
+.numberbullet {
+  font-size: 2em;
+  color: firebrick;
 }
 
 .articles {
@@ -135,4 +161,5 @@ a {
 
 footer {
   margin-top: 2.5em;
+  margin-bottom: 1.5em;
 }
