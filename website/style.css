@@ -37,12 +37,31 @@ a {
   font-family: Dosis;
   font-weight: normal;
   font-style: normal;
+  color: black;
   /*border-style:  solid;
   border-color: #444;
   text-align: center;
   background-color: #FeFeFe;
   border-radius: 0.4em 0.1em 0.1em 0.4em;
   padding-left: 0.5em;*/
+}
+
+.back {
+  float: left;
+  padding: 0.5em;
+  margin-left: 10%;
+  font-family: Dosis;
+  font-weight: normal;
+  font-style: normal;
+  color: black;
+}
+
+.textbody {
+  font-family: Dosis;
+  text-align: center;
+  margin: auto;
+  max-width: 45em;
+  clear: both;
 }
 
 .articles {
